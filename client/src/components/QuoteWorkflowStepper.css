@@ -1,0 +1,230 @@
+/* QuoteWorkflowStepper.css - 6-Stage Multi-Role Quote Progress Stepper */
+
+.qws-container {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin: 0 0 16px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.qws-container.compact {
+  padding: 10px 14px;
+  margin: 0 0 14px;
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+
+.qws-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 600px;
+  gap: 4px;
+  padding: 4px 0;
+  box-sizing: border-box;
+}
+
+.qws-step-node {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.qws-marker {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* The company workflow (M4) has seven stages, one of which names the company
+   and the part of its review that is running, so it needs more room. */
+.qws-container.company .qws-steps {
+  min-width: 780px;
+}
+
+/* Step Node States */
+.qws-step-node.pending .qws-marker {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #94a3b8;
+}
+
+.qws-step-node.pending .qws-step-title {
+  color: #64748b;
+}
+
+.qws-step-node.active .qws-marker {
+  background: #0284c7;
+  border: 1.5px solid #0284c7;
+  color: #ffffff;
+  box-shadow: 0 0 0 3.5px rgba(2, 132, 199, 0.2);
+  animation: qwsPulse 2s infinite;
+}
+
+.qws-step-node.active .qws-step-title {
+  color: #0f172a;
+  font-weight: 800;
+}
+
+.qws-step-node.done .qws-marker {
+  background: #059669;
+  border: 1.5px solid #059669;
+  color: #ffffff;
+}
+
+.qws-step-node.done .qws-step-title {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.qws-step-node.flagged .qws-marker {
+  background: #dc2626;
+  border: 1.5px solid #dc2626;
+  color: #ffffff;
+  box-shadow: 0 0 0 3.5px rgba(220, 38, 38, 0.2);
+}
+
+.qws-step-node.rejected .qws-marker {
+  background: #991b1b;
+  border: 1.5px solid #991b1b;
+  color: #ffffff;
+}
+
+.qws-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.qws-step-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #334155;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.qws-actor-badge {
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #475569;
+  background: #e2e8f0;
+  padding: 1px 5px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+  width: fit-content;
+}
+
+/* What the current company-workflow step is actually doing, in words:
+   "Being checked by Maersk Line", "With the customs officer". */
+.qws-step-sub {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #0284c7;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.qws-step-node.rejected .qws-step-sub {
+  color: #b91c1c;
+}
+
+/* Connectors between nodes */
+.qws-connector {
+  flex: 1;
+  min-width: 8px;
+  height: 2px;
+  background: #cbd5e1;
+  margin: 0 4px;
+  align-self: center;
+  transition: background 0.3s ease;
+}
+
+.qws-connector.done {
+  background: #059669;
+}
+
+.qws-connector.active {
+  background: linear-gradient(90deg, #059669 0%, #0284c7 100%);
+}
+
+/* Telemetry meta bar */
+.qws-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 11.5px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.qws-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qws-meta-label {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.qws-meta-val {
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  border: 1px solid transparent;
+}
+
+.qws-meta-val.ship-pill {
+  background: #e0f2fe;
+  color: #0369a1;
+  border-color: #bae6fd;
+}
+
+.qws-meta-actor {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.qws-meta-divider {
+  width: 1px;
+  height: 14px;
+  background: #cbd5e1;
+}
+
+@keyframes qwsPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 900px) {
+  .qws-actor-badge {
+    display: none;
+  }
+  .qws-step-title {
+    font-size: 10px;
+  }
+}

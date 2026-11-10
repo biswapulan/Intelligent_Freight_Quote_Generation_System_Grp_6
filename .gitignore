@@ -1,0 +1,39 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python / Django
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+db.sqlite3
+db.sqlite3-journal
+staticfiles/
+
+# Customer-uploaded trade documents (served from MEDIA_ROOT at runtime)
+media/
+
+# Node / Vite
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS and editors
+.DS_Store
+._*
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.pytest_cache/
+
+# Milestone 3 Local Documentation (Not pushed to Git)
+milestone_3_docs/
